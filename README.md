@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2020-04-16 11:24:27
  * @LastEditors: jing.chen
- * @LastEditTime: 2020-04-23 13:33:26
+ * @LastEditTime: 2020-04-23 13:35:08
  * @Description: 
  -->
 # vscode-plugin-xbb
@@ -15,13 +15,13 @@
 $t('first.val1')
  用鼠标选中  $t('first.val1  即可
 效果如下
-![image](thttps://github.com/chenjing0823/vscode-plugin-xbb/blob/master/img/QQ20200423-132646%402x.png)
+![image](https://github.com/chenjing0823/vscode-plugin-xbb/blob/master/img/QQ20200423-132646%402x.png)
 之所以这样考虑是
 
 有的地方是下面的书写方式
  $t('placeholder.choosePls', { attr: '' })
 效果如下
-![image](ttps://github.com/chenjing0823/vscode-plugin-xbb/blob/master/img/QQ20200423-132631%402x.png)
+![image](https://github.com/chenjing0823/vscode-plugin-xbb/blob/master/img/QQ20200423-132631%402x.png)
 ### 因为是最近两天用下班时间写的，还有很多优化点。
 
  
