@@ -2,12 +2,13 @@
  * @Author: jing.chen
  * @Date: 2020-04-16 11:24:27
  * @LastEditors: jing.chen
- * @LastEditTime: 2020-04-23 13:04:29
+ * @LastEditTime: 2020-04-23 13:48:32
  * @Description: 
  */
 const vscode = require('vscode');
 const fs = require('fs');
 let tips = '未知'
+let selectTextBlock = 'uncheck'
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -51,6 +52,7 @@ function activate(context) {
 		let word = '' // 翻译内容
 		if (wordSelectArr[0].indexOf('$t') != -1) {
 			word = wordSelectArr[1]
+			selectTextBlock = wordSelectArr[1]
 		} else {
 			return false
 		}
@@ -129,8 +131,9 @@ function activate(context) {
 		})
 		return text
 	}
-	function provideHover() {
-		if (tips) {
+	function provideHover(document, position, token) {
+		const hoverText = document.getText(document.getWordRangeAtPosition(position))
+		if (tips && selectTextBlock.indexOf(hoverText) != -1) { // 只在选中这块显示
 			return new vscode.Hover(`* ${tips}`);
 		}
 	}
