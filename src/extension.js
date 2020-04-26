@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2020-04-16 11:24:27
  * @LastEditors: jing.chen
- * @LastEditTime: 2020-04-23 13:48:32
+ * @LastEditTime: 2020-04-26 17:04:16
  * @Description: 
  */
 const vscode = require('vscode');
@@ -56,6 +56,7 @@ function activate(context) {
 		} else {
 			return false
 		}
+
 		console.log(word)
 		const filePath = vscode.window.activeTextEditor.document.fileName // 当前文件名
 		console.log(filePath)
@@ -80,16 +81,6 @@ function activate(context) {
 			}
 		}
 
-		// if (!files.includes(langPackage)) {
-		// 	if (key === '/src/components') {
-		// 		langPackage = 'components_others.js'
-		// 	} else if (key === '/src/views') {
-		// 		langPackage = 'views_others.js'
-		// 	}
-		// }
-		// if (!files.includes(langPackage)) {
-		// 	langPackage = files[0]
-		// }
 		fileDir += '/' + langPackage
 
 		// 读取语言包内容

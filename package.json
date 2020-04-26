@@ -17,19 +17,7 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "xbb国际化插件",
-			"properties": {
-				"vscodePluginDemo.yourName": {
-					"type": "string",
-					"default": "guest",
-					"description": "你的名字"
-				},
-				"vscodePluginDemo.showTip": {
-					"type": "boolean",
-					"default": true,
-					"description": "启动时显示自定义欢迎页"
-				}
-			}
+			"title": "xbb国际化插件"
 		},
 		"commands": [
 			{
