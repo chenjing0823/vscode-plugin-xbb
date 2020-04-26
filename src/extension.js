@@ -2,13 +2,24 @@
  * @Author: jing.chen
  * @Date: 2020-04-16 11:24:27
  * @LastEditors: jing.chen
- * @LastEditTime: 2020-04-26 17:14:20
+ * @LastEditTime: 2020-04-26 18:55:36
  * @Description: 
  */
 const vscode = require('vscode');
 const fs = require('fs');
 let tips = '未知'
 let selectTextBlock = 'uncheck'
+let rootSymbol = '\\'  // '\':windows  '/': mac
+const os = require('os');
+//Linux系统zd上回答'Linux'
+//macOS 系统上'Darwin'
+//Windows系统上'Windows_NT'
+let sysType = os.type();
+if (sysType === 'Windows_NT'){
+	rootSymbol = '\\'
+} else {
+	rootSymbol = '/'
+}
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -60,28 +71,30 @@ function activate(context) {
 		console.log(word)
 		const filePath = vscode.window.activeTextEditor.document.fileName // 当前文件名
 		console.log(filePath)
-		const fileDirRoot = filePath.split('src')[0] + 'src/lang/zh_CN' // 路径
-		let fileDir = filePath.split('src')[0] + 'src/lang/zh_CN' // 路径
+		const langPath = 'src' + rootSymbol + 'lang' + rootSymbol + 'zh_CN' // /src/lang/zh_CN
+		const fileDirRoot = filePath.split('src')[0] + langPath // 路径
+		let fileDir = filePath.split('src')[0] + langPath // 路径
 		var files = fs.readdirSync(fileDir) // 语言包路径下的文件
 
 		// 处理语言包出处
 		let key = ''
 		let langPackage = ''
-		if (filePath.indexOf('/src/components') != -1) {
-			key = '/src/components'
-			langPackage = 'components_' + filePath.split(key)[1].split('/')[1].split('/')[0] + '.js' // 所在语言包文件
+		const conditionStr = rootSymbol + 'src' + rootSymbol // /src/
+		if (filePath.indexOf(conditionStr + 'components') != -1) {
+			key = conditionStr + 'components' // /src/components
+			langPackage = 'components_' + filePath.split(key)[1].split(rootSymbol)[1].split(rootSymbol)[0] + '.js' // 所在语言包文件
 			if (!files.includes(langPackage)) {
 				langPackage = 'components_others.js'
 			}
-		} else if (filePath.indexOf('/src/views') != -1) {
-			key = '/src/views'
-			langPackage = 'views_' + filePath.split(key)[1].split('/')[1].split('/')[0] + '.js' // 所在语言包文件
+		} else if (filePath.indexOf(conditionStr + 'views') != -1) {
+			key = conditionStr + 'views' // /src/views
+			langPackage = 'views_' + filePath.split(key)[1].split(rootSymbol)[1].split(rootSymbol)[0] + '.js' // 所在语言包文件
 			if (!files.includes(langPackage)) {
 				langPackage = 'views_others.js'
 			}
 		}
 
-		fileDir += '/' + langPackage
+		fileDir += rootSymbol + langPackage
 
 		// 读取语言包内容
 		// let content = require(fileDir)
@@ -90,12 +103,12 @@ function activate(context) {
 
 		// 可能在common里
 		if (!content) {
-			const path = fileDirRoot + '/common.js'
+			const path = fileDirRoot + rootSymbol + 'common.js'
 			content = getTranslate(path, word)
 		}
 		// 可能在others.js
 		if (!content) {
-			const path = fileDirRoot + '/others.js'
+			const path = fileDirRoot + rootSymbol + 'others.js'
 			content = getTranslate(path, word)
 		}
 		tips = content

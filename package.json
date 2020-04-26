@@ -3,7 +3,7 @@
 	"displayName": "vscode-plugin-xbb",
 	"description": "vscode逍邦插件",
 	"publisher": "superchenjing0823",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"engines": {
 		"vscode": "^1.39.0"
 	},

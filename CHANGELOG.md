@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2020-04-16 11:24:27
  * @LastEditors: jing.chen
- * @LastEditTime: 2020-04-23 10:53:39
+ * @LastEditTime: 2020-04-26 18:57:42
  * @Description: 
  -->
 # Change Log
@@ -14,3 +14,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [Unreleased]
 
 - 本次提交支持 lang、zh_CN 下的common.js、components_xxx.js、views_xxx.js、others.js
+
+- 4.26更新提交 windows反映无法使用，兼容windows提交
