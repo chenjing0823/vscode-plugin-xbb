@@ -3,7 +3,7 @@
 	"displayName": "vscode-plugin-xbb",
 	"description": "vscode逍邦插件",
 	"publisher": "superchenjing0823",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
@@ -22,7 +22,7 @@
 		"commands": [
 			{
 				"command": "vscode-plugin-xbb.sayHello",
-				"title": "Hello 陈靖的插件"
+				"title": "Hello 测试"
 			}
 		],
 		"keybindings": [

@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2020-04-16 11:24:27
  * @LastEditors: jing.chen
- * @LastEditTime: 2020-04-26 18:55:36
+ * @LastEditTime: 2020-05-14 10:29:59
  * @Description: 
  */
 const vscode = require('vscode');
@@ -62,8 +62,8 @@ function activate(context) {
 
 		let word = '' // 翻译内容
 		if (wordSelectArr[0].indexOf('$t') != -1) {
-			word = wordSelectArr[1]
-			selectTextBlock = wordSelectArr[1]
+			word = wordSelectArr[1].split('\'')[0]
+			selectTextBlock = wordSelectArr[1].split('\'')[0]
 		} else {
 			return false
 		}
@@ -123,16 +123,26 @@ function activate(context) {
 
 	context.subscriptions.push(disposable);
 
-	function getTranslate(fileDir, word) {
+	function getTranslate(fileDir, word, requireTime = 0) {
 		let content = require(fileDir)
+		// let needDeleteCache = false // 是否需要重新读取文件
 		let text = ''
 		const keyWord = word.split('.') || []
 		keyWord.forEach(item => {
 			if (content[item]) {
 				content = content[item] // 活动相对应的值
 				text = content
+				// needDeleteCache = true
 			}
 		})
+		console.log(requireTime)
+
+		// 解决文件修改 基于node缓存机制无法准确读取到新内容 2020.05.14新增逻辑
+		if (typeof text === 'object' && requireTime <= 2) { // 为了避免特殊情况多次读取内容 限制最多读取次数
+			requireTime += 1
+			delete require.cache[require.resolve(fileDir)]
+			text = getTranslate(fileDir, word, requireTime)
+		}
 		return text
 	}
 	function provideHover(document, position, token) {
