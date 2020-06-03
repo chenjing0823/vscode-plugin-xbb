@@ -27,6 +27,7 @@ $t('placeholder.choosePls', { attr: '' })
 效果如下
 ![image](https://github.com/chenjing0823/vscode-plugin-xbb/blob/master/img/QQ20200423-132631@2x.png?raw=true)
 ```
+20202.5.14更新
 现在取词只要是在&t和结尾引号'即可,
 如 test$t('placeholder.choosePls',{attr:''})test
 选中 test$t('placeholder.choosePls',{attr: 即可识别，
