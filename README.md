@@ -27,6 +27,8 @@ $t('placeholder.choosePls', { attr: '' })
 效果如下
 ![image](https://github.com/chenjing0823/vscode-plugin-xbb/blob/master/img/QQ20200423-132631@2x.png?raw=true)
 
+# 现在取词只要是在&t和结尾引号'即可,如 *test$t('placeholder.choosePls',{attr:''})test* 选中 test$t('placeholder.choosePls',{attr: 即可识别，*test$t('first.val1')test*选中test$t('first.val1')test。即：取词只要是在&t和结尾引号'即可
+
 # 因为是最近两天用下班时间写的，还有很多优化点。
 
  
