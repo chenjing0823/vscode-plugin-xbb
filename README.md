@@ -6,6 +6,7 @@
  * @Description: 
  -->
 # vscode-plugin-xbb
+公司自定义插件，由于逻辑特殊化，仅公司内部Pro项目可以使用
 销帮帮web端国际化插件
 公司自用定制化功能
 
